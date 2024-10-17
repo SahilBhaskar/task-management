@@ -1,0 +1,50 @@
+version: '3'  # Removed this version line for modern Docker Compose
+services:
+  # Laravel service
+  laravel:
+    build:
+      context: .
+    ports:
+      - "8000:8000"  # Mapping port 8000 on both container and host
+    volumes:
+      - .:/var/www/html  # Mounting the project root to /var/www/html inside the container
+    working_dir: /var/www/html
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=task
+      - DB_USERNAME=root
+      - DB_PASSWORD=
+    command: php artisan serve --host=0.0.0.0 --port=8000
+    depends_on:
+      - db  # Ensure Laravel waits for the database to be ready
+    
+    
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: task
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  # React service
+  react:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+    command: npm start
+
+volumes:
+  db_data:
