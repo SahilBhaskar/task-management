@@ -9,8 +9,6 @@ const TaskDashboard = () => {
     const [filter, setFilter] = useState('');
     const [editTask, setEditTask] = useState(null);
 
-   
-
     useEffect(() => {
         fetchTasks();
     }, []);
@@ -23,7 +21,7 @@ const TaskDashboard = () => {
         setTasks(response.data);
     };
 
-    const addTask = async (task, resetForm) => {
+    const addTask = async (task) => {
         const token = localStorage.getItem('token');
        
         try {
@@ -32,10 +30,6 @@ const TaskDashboard = () => {
             });
             setTasks([...tasks, response.data]);
             toast.success('Task Created Successfully!', { position: 'top-right' });
-    
-            resetForm();
-            setEditTask(null);
-    
         } catch (error) {
             console.error('Error occurred:', error);
             if (error.response && error.response.data) {

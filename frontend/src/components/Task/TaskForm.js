@@ -34,7 +34,8 @@ const TaskForm = ({ addTask, editTask, setEditTask }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const task = { title, description, status, due_date: dueDate, priority };
-        addTask(task, resetForm);
+        addTask(task);
+        resetForm();
         setEditTask(null);
     };
 
