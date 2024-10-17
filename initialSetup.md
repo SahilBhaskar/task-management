@@ -17,7 +17,12 @@ Follow the steps below to set up and run the application.
 ### Clone the Repository
 
 https://github.com/SahilBhaskar/task-management.git
+
 git@github.com:SahilBhaskar/task-management.git
+
+- cd task-management
+- git checkout master
+- git pull origin master
 
 ### go to project path
 
@@ -27,6 +32,7 @@ git@github.com:SahilBhaskar/task-management.git
 - DB_DATABASE=task
 - DB_USERNAME=root
 - DB_PASSWORD=
+    
 
 ### Docker commands used
 
