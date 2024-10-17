@@ -33,6 +33,12 @@ git@github.com:SahilBhaskar/task-management.git
 - DB_USERNAME=root
 - DB_PASSWORD=
     
+### Run basic laravel commands first only once
+
+- composer install
+- php artisan key:generate
+- cd ./frontend
+- npm install
 
 ### Docker commands used
 
@@ -44,3 +50,6 @@ git@github.com:SahilBhaskar/task-management.git
   docker-compose ps -a
 - stop docker containers
   docker-compose down
+
+  ### laravel app will run on:- http://localhost:8000/
+  ### react app will run on:-  http://localhost:3000/
